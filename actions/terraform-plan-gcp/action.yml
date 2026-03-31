@@ -32,6 +32,10 @@ inputs:
   working_dir:
     description: "The working directory for Terraform files"
     required: true
+  refresh:
+    description: "Whether to refresh the state before applying"
+    required: false
+    default: "true"
 
 runs:
   using: "composite"
@@ -87,8 +91,10 @@ runs:
     - name: Terraform Plan
       id: plan
       shell: bash
+      env:
+        REFRESH: ${{ inputs.refresh }}
       run: |
-        terraform plan -input=false -no-color -lock=false -refresh=false -out=/tmp/plan.tmp
+        terraform plan -input=false -no-color -lock=false -refresh="$REFRESH" -out=/tmp/plan.tmp
         terraform show -no-color /tmp/plan.tmp > /tmp/plan.out
         rm -f /tmp/plan.tmp
       continue-on-error: true
