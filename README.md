@@ -1,5 +1,7 @@
 # gh-actions-terraform-workflows
 
+This fork is no longer needed after https://github.com/ResiQuant/infra-terraform/pull/514
+
 This repository provides a collection of reusable composite GitHub Actions for managing Terraform operations (`plan`, `apply`, etc.) across different environments (`dev`, `prod`, `stage`, etc.). These actions are designed to integrate with AWS and securely manage secrets.
 
 ## Available Composite Actions
